@@ -9,3 +9,7 @@ Estudo em grupo do time de desenvolvedores da Squad Controllership - MadeiraMade
     - Instalação do Express e do Nodemon
     - Criação de rotas.
     - Criação de Controllers Exemplo.
+    
+### 23/08/2022
+    - Término do Crud
+    - Criação de Middlware com autenticação de Bearer Token
