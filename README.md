@@ -13,3 +13,7 @@ Estudo em grupo do time de desenvolvedores da Squad Controllership - MadeiraMade
 ### 23/08/2022
     - Término do Crud
     - Criação de Middlware com autenticação de Bearer Token
+    
+### 30/08/2022
+    - Criando conexão com banco de dados
+    - Incorporando ORM Sequelize no projeto

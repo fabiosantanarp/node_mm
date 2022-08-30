@@ -1,42 +1,106 @@
-class userController {
+const User = require("../model/user");
 
-    constructor() {
-        this.user = [
-            {
-                "id": 0,
-                "name": "Fabio Santana"
-            },
-            {
-                "id": 1,
-                "name": "Fulano de Tal"
-            },
-            {
-                "id": 2,
-                "name": "Ciclano de Tal"
-            },
-        ];
+const index = async (req, res) => {
+  const users = await User.findAll();
+  res.json(users);
+};
+
+const create = async (req, res) => {
+  const { name, age } = req.body;
+
+  if (!name) {
+    res.json({
+      message: "Nome não pode ser vazio",
+    });
+  }
+
+  if (!age) {
+    res.json({
+      message: "Idade não pode ser vazio",
+    });
+  }
+
+  const user = await User.create({
+    name,
+    age,
+  });
+
+  res.json(user);
+};
+
+const update = async (req, res) => {
+  const { name, age } = req.body;
+  const { userid } = req.params;
+
+  if (!name) {
+    res.json({
+      message: "Nome não pode ser vazio",
+    });
+  }
+
+  if (!age) {
+    res.json({
+      message: "Idade não pode ser vazio",
+    });
+  }
+
+  const userExist = await User.findByPk(userid);
+
+  if (!userExist) {
+    res.json(
+      {
+        message: "Usuário não encontrado",
+      },
+      400
+    );
+  }
+
+  await User.update(
+    {
+      name,
+      age,
+    },
+    {
+      where: {
+        id: userid,
+      },
     }
+  );
 
-    all() {
-        return this.user;
-    }
+  res.json({
+    message: "Usuário atualizado com sucesso!",
+  });
+};
 
-    create(req) {
-        this.user.push(req.body);
-        return this.all();
-    }
+const destroy = async (req, res) => {
+  const { userid } = req.params;
 
-    update(req) {
-        let id = this.user.findIndex((item) => item.id == req.params.userid);
-        this.user[id].name = req.body.name;
+  await User.destroy({
+    where: {
+      id: userid,
+    },
+  });
 
-        return this.user[id];
-    }
+  res.json({
+    message: "Usuário excluído com sucesso!",
+  });
+};
 
-    delete(req) {
-        this.user = this.user.filter((item) => item.id != req.params.userid);
-        return { "msg": "Usuario deletado com sucesso!" };
-    }
-}
+const get = async (req, res) => {
+  const { userid } = req.params;
 
-module.exports = userController;
+  const user = await User.findByPk(userid);
+
+  if (!user) {
+    res.json(
+      {
+        message: "Usuário não encontrado",
+      },
+      400
+    );
+  }
+
+  res.json(user);
+};
+
+module.exports = { index, create, update, destroy, get };
