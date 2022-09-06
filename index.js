@@ -1,13 +1,13 @@
 const express = require("express");
-const routes = require("./routes/user");
-const db = require("./db");
+require("./config/global");
+const db = require("./database");
 const PORT = 3000;
 
 const app = express();
 
 app.use(express.json());
 
-app.use("/user/", routes);
+app.use(require("./routes/routes"));
 
 db.sync(() => console.log("Conectado ao banco de dados"));
 

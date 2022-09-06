@@ -17,7 +17,7 @@ const auth = (req, res, next) => {
   next();
 };
 
-router.get("/", auth, userController.index);
+router.get("/list/", auth, userController.index);
 router.get("/:userid", auth, userController.get);
 router.post("/", auth, userController.create);
 router.put("/:userid", auth, userController.update);

@@ -1,7 +1,7 @@
 const User = require("../model/user");
 
 const index = async (req, res) => {
-  const users = await User.findAll();
+  const users = await DB.query(`select * from users`);
   res.json(users);
 };
 

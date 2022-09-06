@@ -1,8 +1,6 @@
 const Sequelize = require("sequelize");
-const database = require("../db");
 
-// https://sequelize.org
-const User = database.define("user", {
+const User = DB.define("user", {
   // freezeTableName: true,
   id: {
     type: Sequelize.INTEGER,
