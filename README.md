@@ -23,3 +23,8 @@ Estudo em grupo do time de desenvolvedores da Squad Controllership - MadeiraMade
     - Definição de variáveis Globais dentro do Projeto
     - Definição de parâmetros Globais
     - Utilização de consulta ao banco diretamente com DB Query (Sequelize).
+    
+### 13/09/2022
+    - Definição de repositório.
+    - Abstração de variáveis Globais. 
+    - Criação da classe userRepository, responsável pela consulta dos usuários ao banco.
