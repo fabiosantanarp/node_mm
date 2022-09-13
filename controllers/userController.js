@@ -1,7 +1,10 @@
 const User = require("../model/user");
+const userRepository = require("../repository/userRepository");
 
 const index = async (req, res) => {
-  const users = await DB.query(`select * from users`);
+  let repository = new userRepository;
+  let users = await repository.all();
+  console.log(users);
   res.json(users);
 };
 
